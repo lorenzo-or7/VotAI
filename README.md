@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:040607,100:BF40FA&height=180&section=header&text=VotAI&fontSize=48&fontColor=ffffff&fontAlignY=38&desc=Informa%C3%A7%C3%A3o%20eleitoral%20clara%20e%20acess%C3%ADvel&descAlignY=60&descSize=16" width="100%" alt="VotAI" />
+  <img src="banner.svg" width="100%" alt="VotAI" />
 </p>
 
 <p align="center">
@@ -16,16 +16,20 @@
   usando os dados públicos do Tribunal Superior Eleitoral (TSE).
 </p>
 
-<!-- Se o site estiver publicado, descomente a linha abaixo e coloque o link -->
-<!-- <p align="center"><a href="https://SEU-LINK-AQUI"><b>🔗 Acessar o VotAI</b></a></p> -->
+<p align="center">
+  <a href="https://planosdegoverno.com.br/"><img src="https://img.shields.io/badge/%F0%9F%9F%A2%20No%20ar-planosdegoverno.com.br-BF40FA?style=for-the-badge&labelColor=040607" alt="Site no ar" /></a>
+</p>
+
+<p align="center">
+  <b>1.866 propostas</b> &nbsp;•&nbsp; <b>13 candidaturas à Presidência</b> &nbsp;•&nbsp; <b>14 temas</b> &nbsp;•&nbsp; Eleições 2026
+</p>
 
 ---
 
 ## 🖥️ Preview
 
-<!-- Envie um print da página inicial para assets/preview.png para esta imagem aparecer -->
 <p align="center">
-  <img src="assets/preview.png" alt="Tela inicial do VotAI" width="90%" />
+  <a href="https://planosdegoverno.com.br/"><img src="assets/preview.png" alt="Tela inicial do VotAI" width="90%" /></a>
 </p>
 
 ---
@@ -126,5 +130,5 @@ implementação do projeto foram conduzidas por mim.
 </p>
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:BF40FA,100:040607&height=100&section=footer" width="100%" />
+  <img src="footer.svg" width="100%" alt="" />
 </p>
