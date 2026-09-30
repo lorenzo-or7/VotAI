@@ -1,0 +1,1 @@
+Elementos gráficos da interface. O hero e os fundos são gerados por código (canvas/SVG) para manter o site leve.

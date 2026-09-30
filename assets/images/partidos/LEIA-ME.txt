@@ -1,0 +1,2 @@
+Logotipos dos partidos (preferencialmente .svg).
+Os arquivos partido-0X.svg desta pasta são formas FICTÍCIAS de demonstração.

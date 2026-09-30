@@ -1,0 +1,3 @@
+Coloque aqui as fotos padronizadas (4:5, 800x1000px, .webp).
+Nome sugerido: candidato-01.webp, candidato-02.webp ...
+O caminho é salvo na coluna candidatos.foto.

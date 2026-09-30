@@ -1,0 +1,75 @@
+Options -Indexes -MultiViews
+DirectoryIndex index.php
+AddDefaultCharset UTF-8
+ServerSignature Off
+
+# ---------------------------------------------------------------------------
+# Arquivos que nunca devem ser baixados pelo navegador
+# (documentação, banco de dados, backups, configurações, arquivos ocultos)
+# ---------------------------------------------------------------------------
+<FilesMatch "(?i)(\.(md|sql|sqlite|bak|backup|old|orig|save|swp|swo|tmp|log|ini|conf|cfg|dist|env|sh|lock|json|yml|yaml|zip|tar|gz|7z|rar)|~)$">
+  Require all denied
+</FilesMatch>
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+RedirectMatch 404 (?i)/\.(git|svn|hg|env|idea|vscode)(/|$)
+RedirectMatch 404 (?i)^/?(.*/)?(database|includes|admin/includes)(/|$)
+
+# Cabeçalhos de segurança para arquivos estáticos (as páginas PHP enviam os seus)
+<IfModule mod_headers.c>
+  Header always unset X-Powered-By
+  Header unset X-Powered-By
+  Header always set X-Content-Type-Options "nosniff"
+  # SVG nunca executa script, mesmo se aberto direto no navegador
+  <FilesMatch "(?i)\.svg$">
+    Header set Content-Security-Policy "default-src 'none'; style-src 'unsafe-inline'; sandbox"
+  </FilesMatch>
+</IfModule>
+
+# ---------------------------------------------------------------------------
+# Links bonitos (/tema/saude, /candidato/lula, /comparar/lula-x-zema/saude,
+# /proposta/123-titulo...). Precisa do mod_rewrite (já vem ligado no XAMPP).
+# Sem o mod_rewrite o site continua funcionando com os links antigos (?t=...).
+# ---------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Avisa o PHP de que os links bonitos estão disponíveis
+  RewriteRule ^ - [E=VOTAI_REWRITE:1]
+
+  # Em produção, com o certificado (HTTPS) já ativo, tire o "#" das 2 linhas abaixo
+  # para mandar todo acesso http:// para https://
+  # RewriteCond %{HTTPS} !=on
+  # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Arquivos e pastas que existem de verdade são servidos normalmente
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  RewriteRule ^tema/([a-z0-9-]+)/([a-z0-9-]+)/?$ tema.php?t=$1&sub=$2 [QSA,L]
+  RewriteRule ^tema/([a-z0-9-]+)/?$ tema.php?t=$1 [QSA,L]
+  RewriteRule ^candidato/([a-z0-9-]+)/?$ candidato.php?c=$1 [QSA,L]
+  RewriteRule ^comparar/([a-z0-9-]+)/([a-z0-9-]+)/apresentar/?$ comparar.php?par=$1&tema=$2&apresentar=1 [QSA,L]
+  RewriteRule ^comparar/([a-z0-9-]+)/([a-z0-9-]+)/?$ comparar.php?par=$1&tema=$2 [QSA,L]
+  RewriteRule ^proposta/([0-9]+)(-[a-z0-9-]*)?/?$ proposta.php?id=$1 [QSA,L]
+  RewriteRule ^(temas|candidatos|metodologia|atualizacoes|comparar|busca|correcoes|privacidade)/?$ $1.php [QSA,L]
+  RewriteRule ^sitemap\.xml$ sitemap.php [L]
+  RewriteRule ^robots\.txt$ robots.php [L]
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 week"
+  ExpiresByType image/svg+xml "access plus 1 month"
+</IfModule>
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript text/javascript application/json image/svg+xml
+</IfModule>
+# Página 404 personalizada (ajuste o caminho se o site estiver em subpasta, ex.: /votai/404.php)
+ErrorDocument 404 /404.php

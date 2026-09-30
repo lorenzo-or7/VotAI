@@ -1,0 +1,19 @@
+# Pasta de arquivos enviados: nada aqui pode ser executado como programa
+Options -Indexes -ExecCGI
+<IfModule mod_php.c>
+  php_flag engine off
+</IfModule>
+<IfModule mod_php7.c>
+  php_flag engine off
+</IfModule>
+<IfModule mod_php8.c>
+  php_flag engine off
+</IfModule>
+RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .php8 .pht .phps .phar .cgi .pl .py .sh .shtml
+RemoveType .php .phtml .php3 .php4 .php5 .php7 .php8 .pht .phps .phar
+<FilesMatch "(?i)\.(php\d?|phtml|pht|phps|phar|pl|py|cgi|sh|shtml|htaccess|html?|svg|js)(\.|$)">
+  Require all denied
+</FilesMatch>
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+</IfModule>
