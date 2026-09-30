@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:040607,100:BF40FA&height=180&section=header&text=VotAI%20%F0%9F%87%A7%F0%9F%87%B7&fontSize=48&fontColor=ffffff&fontAlignY=38&desc=Informa%C3%A7%C3%A3o%20eleitoral%20clara%20e%20acess%C3%ADvel&descAlignY=60&descSize=16" width="100%" alt="VotAI" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:040607,100:BF40FA&height=180&section=header&text=VotAI&fontSize=48&fontColor=ffffff&fontAlignY=38&desc=Informa%C3%A7%C3%A3o%20eleitoral%20clara%20e%20acess%C3%ADvel&descAlignY=60&descSize=16" width="100%" alt="VotAI" />
 </p>
 
 <p align="center">
